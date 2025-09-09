@@ -1,11 +1,11 @@
 # -------------- Build-time variables --------------
 ARG NEXTCLOUD_VERSION=31.0.8
-ARG PHP_VERSION=8.3
-ARG NGINX_VERSION=1.28
+ARG PHP_VERSION=8.4
+ARG NGINX_VERSION=1.29
 
-ARG ALPINE_VERSION=3.21
-ARG HARDENED_MALLOC_VERSION=11
-ARG SNUFFLEUPAGUS_VERSION=0.10.0
+ARG ALPINE_VERSION=3.22
+ARG HARDENED_MALLOC_VERSION=13
+ARG SNUFFLEUPAGUS_VERSION=0.12.0
 
 ARG UID=1000
 ARG GID=1000
@@ -165,5 +165,9 @@ LABEL org.opencontainers.image.description="All-in-one Nextcloud image, based on
       org.opencontainers.image.version="${NEXTCLOUD_VERSION}" \
       org.opencontainers.image.authors="Hoellen <dev@hoellen.eu>" \
       org.opencontainers.image.source="https://github.com/hoellen/docker-nextcloud"
+
+USER root
+RUN apk --no-cache add ffmpeg
+USER nextcloud
 
 CMD ["run.sh"]
